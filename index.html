@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Eshwar Reddy Gali — Procurement, SAP Ariba, P2P, Analytics and AI portfolio." />
+  <meta name="theme-color" content="#0b080c" />
+  <title>Eshwar Reddy Gali — Portfolio</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&display=swap");
+
+    :root{
+      --bg:#0b080c;
+      --bg-soft:#101013;
+      --panel:#111315;
+      --text:#f5f5f3;
+      --muted:#a1a1a1;
+      --line:rgba(255,255,255,.14);
+      --green:#39d98a;
+      --green2:#16a34a;
+      --green-soft:rgba(57,217,138,.12);
+      --max:1500px;
+      --shadow:0 30px 100px rgba(0,0,0,.45);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:var(--bg)}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:"Geist",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      overflow-x:hidden;
+      cursor:none;
+    }
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    img{display:block;max-width:100%}
+    ::selection{background:rgba(57,217,138,.35);color:white}
+
+    /* cursor */
+    .cursor{
+      position:fixed;left:0;top:0;width:48px;height:48px;border-radius:50%;will-change:transform;
+      background:var(--green);mix-blend-mode:difference;pointer-events:none;z-index:9999;
+      transform:translate3d(-100px,-100px,0) translate(-50%,-50%);transition:width .22s,height .22s,opacity .22s,background .22s;
+      box-shadow:0 0 30px rgba(57,217,138,.25)
+    }
+    .cursor.dot{width:12px;height:12px}
+    .cursor.active{width:78px;height:78px;background:white}
+    @media(max-width:800px){body{cursor:auto}.cursor{display:none}.noise{display:none}.page-glow{opacity:.72}}
+
+    .page-glow{
+      position:fixed;inset:0;pointer-events:none;z-index:-2;
+      background:
+        radial-gradient(circle at 7% 10%, rgba(57,217,138,.10), transparent 30%),
+        radial-gradient(circle at 95% 55%, rgba(57,217,138,.07), transparent 26%),
+        #0b080c;
+    }
+    .noise{
+      position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.025;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+    }
+
+    .nav{
+      position:fixed;top:0;left:0;right:0;z-index:100;height:82px;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 clamp(20px,4vw,72px);
+      background:linear-gradient(180deg,rgba(11,8,12,.97),rgba(11,8,12,.80),transparent);
+      backdrop-filter:blur(8px);
+    }
+    .brand{font-size:14px;font-weight:700;letter-spacing:.08em}
+    .brand span{color:var(--green)}
+    .nav-links{display:flex;gap:28px;font-size:13px;color:#cfcfcf}
+    .nav-links a{position:relative}
+    .nav-links a:after{content:"";position:absolute;left:0;bottom:-7px;width:0;height:1px;background:var(--green);transition:.3s}
+    .nav-links a:hover:after{width:100%}
+    @media(max-width:800px){.nav-links{display:none}}
+
+    .social-rail{
+      position:fixed;left:28px;bottom:28px;z-index:90;display:flex;flex-direction:column;gap:11px
+    }
+    .social-rail a{
+      width:42px;height:42px;border:1px solid var(--line);display:grid;place-items:center;
+      border-radius:50%;background:rgba(11,8,12,.7);transition:.25s;color:#d9d9d9
+    }
+    .social-rail a:hover{border-color:var(--green);color:var(--green);transform:translateY(-3px)}
+    .social-rail svg{width:18px;height:18px;fill:currentColor}
+    @media(max-width:800px){.social-rail{display:none}}
+
+    .section{
+      width:min(var(--max),calc(100% - 64px));margin:0 auto;position:relative;
+      content-visibility:auto;contain-intrinsic-size:900px;
+    }
+    @media(max-width:700px){.section{width:min(100% - 28px,var(--max))}}
+
+    /* Landing inspired by the old site's split composition */
+    .landing{
+      min-height:100svh;display:grid;grid-template-columns:1fr 1fr;
+      align-items:center;gap:88px;padding-top:90px;
+    }
+    .landing-left{text-align:right;padding-right:3vw}
+    .hello{font-size:clamp(18px,1.7vw,28px);font-weight:300;margin-bottom:10px}
+    .name{
+      font-size:clamp(44px,5.1vw,82px);line-height:.94;letter-spacing:-.055em;
+      font-weight:700;text-transform:uppercase;margin:0;
+    }
+    .name .thin{font-weight:300}
+    .landing-right{align-self:center;padding-left:3vw}
+    .landing-right .an{font-size:23px;color:var(--green);font-weight:300;margin-bottom:-5px}
+    .role{
+      font-size:clamp(34px,4.4vw,70px);line-height:.95;font-weight:600;text-transform:uppercase;
+      color:var(--green);margin:0 0 10px;letter-spacing:-.04em;
+    }
+    .role-sub{
+      font-size:clamp(20px,2.3vw,34px);font-weight:500;text-transform:uppercase;line-height:1.1;
+    }
+    .scroll-hint{
+      position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+      color:#777;font-size:10px;letter-spacing:.24em;text-transform:uppercase
+    }
+
+    @media(max-width:1000px){
+      .landing{grid-template-columns:1fr;gap:8px;padding-top:120px;text-align:center}
+      .landing-left{text-align:center;padding-right:0}.landing-right{text-align:center;padding-left:0}
+    }
+
+    /* About */
+    .about{
+      min-height:95svh;display:flex;align-items:center;justify-content:flex-end;padding:100px 0
+    }
+    .about-copy{width:min(760px,58vw)}
+    .eyebrow{
+      color:var(--green);font-size:13px;text-transform:uppercase;letter-spacing:.34em;
+      margin-bottom:24px;font-weight:500
+    }
+    .about-copy p{
+      font-size:clamp(28px,3vw,48px);line-height:1.12;font-weight:600;letter-spacing:-.03em;margin:0;
+    }
+    .about-copy p span{color:var(--green)}
+    .about-metrics{display:flex;gap:42px;margin-top:44px;flex-wrap:wrap}
+    .about-metrics strong{font-size:36px;color:white}
+    .about-metrics small{display:block;color:#888;margin-top:5px;text-transform:uppercase;letter-spacing:.12em}
+    @media(max-width:900px){.about{justify-content:flex-start}.about-copy{width:100%}}
+
+    /* Career */
+
+    /* Career */
+    .career{padding:150px 0 120px}
+    .career h2{
+      font-size:clamp(54px,6vw,96px);line-height:.92;text-align:center;font-weight:400;margin:0 0 100px;
+      background:linear-gradient(180deg,#fff 0%,#39d98a 100%);-webkit-background-clip:text;color:transparent
+    }
+    .career-grid{position:relative}
+    .career-line{
+      position:absolute;left:50%;top:0;bottom:0;width:3px;transform:translateX(-50%);
+      background:linear-gradient(to bottom,transparent,var(--green) 8%,var(--green2) 90%,transparent)
+    }
+    .career-dot{
+      position:absolute;left:50%;top:0;width:11px;height:11px;background:var(--green);
+      transform:translate(-50%,-50%);border-radius:50%;
+      box-shadow:0 0 10px #6ee7b7,0 0 30px #4ade80,0 0 80px rgba(187,247,208,.7);
+      animation:dotTravel 9s ease-in-out infinite;animation-play-state:var(--motion-state,running)
+    }
+    @keyframes dotTravel{0%,100%{top:2%}50%{top:98%}}
+    .career-row{display:grid;grid-template-columns:1fr 100px 1fr;gap:26px;margin-bottom:85px;align-items:start}
+    .career-row .left{text-align:right}
+    .career-role{font-size:30px;font-weight:550;margin:0}.career-company{color:var(--green);font-size:17px;margin-top:7px}
+    .career-year{font-size:44px;text-align:center;font-weight:500}
+    .career-desc{color:#aaa;line-height:1.7;font-size:15px;margin:0}
+    @media(max-width:860px){
+      .career-line{left:10px}.career-dot{left:10px}.career-row{grid-template-columns:28px 1fr;gap:16px}
+      .career-row .left{grid-column:2;text-align:left}.career-year{grid-column:2;text-align:left;font-size:28px}
+      .career-desc{grid-column:2}.career-row{margin-bottom:60px}
+    }
+
+    /* Projects */
+    .projects{padding:120px 0}
+    .section-title{
+      font-size:clamp(52px,6vw,94px);line-height:.9;letter-spacing:-.055em;font-weight:600;margin:0 0 70px
+    }
+    .section-title span{color:var(--green)}
+    .project{
+      min-height:570px;border-top:1px solid var(--line);display:grid;grid-template-columns:.78fr 1.22fr;
+      gap:60px;align-items:center;padding:70px 0;perspective:1100px
+    }
+    .project:last-child{border-bottom:1px solid var(--line)}
+    .project-no{font-size:13px;color:var(--green);letter-spacing:.2em}
+    .project h3{font-size:clamp(34px,3.4vw,58px);line-height:1;letter-spacing:-.04em;margin:15px 0}
+    .project p{color:#a7a7a7;line-height:1.7;max-width:600px}
+    .project-metrics{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0}
+    .project-metrics span{font-size:12px;border:1px solid var(--line);padding:8px 11px;border-radius:18px}
+    .project-link{display:inline-flex;align-items:center;gap:18px;color:white;border-bottom:1px solid var(--green);padding-bottom:8px;font-weight:600}
+    .project-link b{color:var(--green)}
+    .shot{
+      border:1px solid rgba(57,217,138,.25);border-radius:24px;padding:10px;background:#111;
+      transform:rotateY(-8deg) rotateX(3deg);box-shadow:var(--shadow);transition:.6s cubic-bezier(.2,.8,.2,1)
+    }
+    .project:hover .shot{transform:rotateY(0) rotateX(0) translateY(-8px)}
+    .shot img{border-radius:16px;width:100%;aspect-ratio:16/10;object-fit:cover;background:white}
+    @media(max-width:950px){.project{grid-template-columns:1fr}.shot{transform:none}}
+
+    /* Skills: old-site inspired moving tools */
+    .skills{
+      min-height:100svh;padding:120px 0;position:relative;overflow:hidden;content-visibility:auto;contain-intrinsic-size:900px;
+      background:
+        radial-gradient(circle at 50% 50%,rgba(57,217,138,.10),transparent 38%),
+        #0b080c;
+    }
+    .skills h2{
+      text-align:center;font-size:clamp(52px,7vw,105px);font-weight:400;text-transform:uppercase;margin:0 0 75px;
+      background:linear-gradient(180deg,#fff 0%,#39d98a 100%);-webkit-background-clip:text;color:transparent
+    }
+    .marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:15px 0;margin-bottom:36px}
+    .track{display:flex;width:max-content;gap:42px;animation:scrollLeft 24s linear infinite;animation-play-state:var(--motion-state,running)}
+    .track.reverse{animation-name:scrollRight;animation-duration:28s}
+    .pill{font-size:16px;text-transform:uppercase;letter-spacing:.12em;white-space:nowrap;color:#d9d9d9}
+    .pill:before{content:"◆";color:var(--green);margin-right:18px;font-size:9px}
+    @keyframes scrollLeft{to{transform:translateX(-50%)}}
+    @keyframes scrollRight{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+
+    .tool-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:30px;margin-top:80px}
+    .gem{width:108px;display:flex;flex-direction:column;align-items:center;gap:12px}
+    .gem-shape{
+      width:92px;height:92px;display:grid;place-items:center;clip-path:polygon(30% 0,70% 0,100% 30%,100% 70%,70% 100%,30% 100%,0 70%,0 30%);
+      background:linear-gradient(145deg,rgba(57,217,138,.18),rgba(255,255,255,.02)),#101713;
+      border:1px solid rgba(57,217,138,.30);box-shadow:inset 0 2px 7px rgba(255,255,255,.07),0 14px 25px rgba(0,0,0,.35);
+      transition:.35s
+    }
+    .gem-shape b{font-size:15px;color:white;text-align:center}
+    .gem small{color:#888;text-align:center}
+    .gem:hover .gem-shape{transform:translateY(-10px) rotate(6deg) scale(1.07);box-shadow:0 18px 35px rgba(57,217,138,.20)}
+    .gem:hover small{color:white}
+
+    /* Credentials */
+    .credentials{padding:130px 0}
+    .cred-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+    .cred{
+      border:1px solid var(--line);padding:34px;border-radius:0;min-height:235px;position:relative;overflow:hidden;
+      background:linear-gradient(145deg,rgba(57,217,138,.025),rgba(255,255,255,.01))
+    }
+    .cred:after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--green);transition:.4s}
+    .cred:hover:after{width:100%}
+    .cred .label{font-size:11px;color:var(--green);letter-spacing:.2em;text-transform:uppercase}
+    .cred h3{font-size:27px;max-width:560px;margin:18px 0 12px}.cred p{color:#999;line-height:1.6}
+    .cred a{display:inline-flex;gap:10px;margin-top:16px;font-weight:600}.cred a span{color:var(--green)}
+    @media(max-width:850px){.cred-grid{grid-template-columns:1fr}}
+
+    /* Contact */
+    .contact{padding:140px 0 75px}
+    .contact-name{font-size:clamp(52px,7vw,112px);font-weight:400;text-transform:uppercase;margin:0 0 55px;letter-spacing:-.055em}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:50px;border-top:1px solid var(--line);padding-top:34px}
+    .contact-grid h4{color:#777;font-size:13px;font-weight:500;margin:0 0 10px}.contact-grid p,.contact-grid a{font-size:18px;margin:0 0 9px}
+    .contact-grid a:hover{color:var(--green)}
+    .made{color:#aaa}.made span{color:var(--green)}
+    .footer{margin-top:90px;border-top:1px solid var(--line);padding-top:22px;color:#666;font-size:12px;display:flex;justify-content:space-between}
+    @media(max-width:850px){.contact-grid{grid-template-columns:1fr}.footer{flex-direction:column;gap:6px}}
+
+    /* reveal and 3d scroll */
+    .reveal{opacity:0;transform:translateY(55px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .tilt{transform-style:preserve-3d;will-change:transform}
+
+    @media(prefers-reduced-motion:reduce){
+      *,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+      .reveal{opacity:1;transform:none}
+      body{cursor:auto}.cursor{display:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="page-glow"></div><div class="noise"></div><div class="cursor" id="cursor"></div>
+
+  <header class="nav">
+    <a class="brand hover-target" href="#home">ESHWAR<span>.</span></a>
+    <nav class="nav-links">
+      <a class="hover-target" href="#about">About</a>
+      
+      <a class="hover-target" href="#career">Career</a>
+      <a class="hover-target" href="#projects">Projects</a>
+      <a class="hover-target" href="#skills">Skills</a>
+      <a class="hover-target" href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <aside class="social-rail" aria-label="Social links">
+    <a class="hover-target" href="https://github.com/eshwarreddy24" target="_blank" aria-label="GitHub">
+      <svg viewBox="0 0 24 24"><path d="M12 .7a11.3 11.3 0 0 0-3.57 22c.56.1.77-.24.77-.54v-2.1c-3.14.68-3.8-1.34-3.8-1.34-.52-1.3-1.26-1.65-1.26-1.65-1.03-.7.08-.69.08-.69 1.14.08 1.74 1.17 1.74 1.17 1.01 1.73 2.65 1.23 3.3.94.1-.73.4-1.23.72-1.51-2.5-.29-5.14-1.25-5.14-5.57 0-1.23.44-2.24 1.17-3.03-.12-.29-.51-1.44.11-2.99 0 0 .95-.31 3.11 1.16A10.8 10.8 0 0 1 12 6.18a10.7 10.7 0 0 1 2.84.38c2.16-1.47 3.1-1.16 3.1-1.16.62 1.55.23 2.7.11 2.99.73.79 1.17 1.8 1.17 3.03 0 4.33-2.64 5.28-5.15 5.56.41.35.77 1.03.77 2.08v3.08c0 .3.2.65.78.54A11.3 11.3 0 0 0 12 .7Z"/></svg>
+    </a>
+    <a class="hover-target" href="https://www.linkedin.com/in/eshwar-reddy-gali-/" target="_blank" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5ZM2.8 9.7h4.36V23H2.8V9.7Zm7.08 0h4.18v1.82h.06c.58-1.1 2-2.25 4.12-2.25 4.4 0 5.22 2.9 5.22 6.67V23H19.1v-6.26c0-1.5-.03-3.42-2.09-3.42-2.09 0-2.41 1.63-2.41 3.31V23H9.88V9.7Z"/></svg>
+    </a>
+    <a class="hover-target" href="https://www.instagram.com/eshwarrxddy" target="_blank" aria-label="Instagram">
+      <svg viewBox="0 0 24 24"><path d="M7.2 2h9.6A5.2 5.2 0 0 1 22 7.2v9.6a5.2 5.2 0 0 1-5.2 5.2H7.2A5.2 5.2 0 0 1 2 16.8V7.2A5.2 5.2 0 0 1 7.2 2Zm0 1.8a3.4 3.4 0 0 0-3.4 3.4v9.6a3.4 3.4 0 0 0 3.4 3.4h9.6a3.4 3.4 0 0 0 3.4-3.4V7.2a3.4 3.4 0 0 0-3.4-3.4H7.2ZM17.3 5.15a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.8a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 0 0 0-6.4Z"/></svg>
+    </a>
+  </aside>
+
+  <main>
+    <section class="section landing" id="home">
+      <div class="landing-left reveal">
+        <div class="hello">Hello! I'm</div>
+        <h1 class="name">Gali Eshwar<br><span class="thin">Reddy</span></h1>
+      </div>
+      <div class="landing-right reveal">
+        <div class="an">A</div>
+        <h2 class="role">Procurement<br>& P2P</h2>
+        <div class="role-sub">SAP · Analytics · AI</div>
+      </div>
+      <div class="scroll-hint">Scroll to explore</div>
+    </section>
+
+    <section class="section about" id="about">
+      <div class="about-copy reveal">
+        <div class="eyebrow">About Me</div>
+        <p>
+          Procurement & P2P professional working across <span>SAP Ariba</span>, SAP MM/FI,
+          reconciliation, reporting and practical AI workflows. I focus on making procurement
+          controls clearer, transactions easier to validate, and operational data more useful.
+        </p>
+        <div class="about-metrics">
+          <div><strong>20+</strong><small>Invoices / month</small></div>
+          <div><strong>10+</strong><small>Infrastructure projects</small></div>
+          <div><strong>15 yrs</strong><small>Records reconciled</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section career" id="career">
+      <h2 class="reveal">My career <span>&</span><br>experience</h2>
+      <div class="career-grid">
+        <div class="career-line"><i class="career-dot"></i></div>
+
+        <article class="career-row reveal">
+          <div class="left">
+            <h3 class="career-role">Graduate Apprentice</h3>
+            <div class="career-company">Airports Authority of India (AAI)</div>
+          </div>
+          <div class="career-year">2025</div>
+          <p class="career-desc">Processed and tracked 20+ invoice transactions monthly in SAP MM/FI, coordinated tender and e-procurement workflows across 10+ infrastructure projects, built Excel/Power BI reporting and reconciled 15 years of historical financial records.</p>
+        </article>
+
+        <article class="career-row reveal">
+          <div class="left">
+            <h3 class="career-role">Graduate Engineer Trainee</h3>
+            <div class="career-company">Organo Eco Habitats Pvt. Ltd.</div>
+          </div>
+          <div class="career-year">2024</div>
+          <p class="career-desc">Built Excel trackers combining material demand, purchase status, resource plans and project updates, and coordinated procurement inputs across project teams for purchasing and monitoring.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section projects" id="projects">
+      <h2 class="section-title reveal">Selected <span>work</span></h2>
+
+      <article class="project reveal hover-target">
+        <div>
+          <div class="project-no">PROJECT 01 / SAP ARIBA</div>
+          <h3>Contract Compliance, Catalog & PO Validation</h3>
+          <p>Designed and tested a three-level Contract Compliance model from supplier agreement to commodity and item subagreements, then validated how negotiated terms flowed into catalog, requisition and purchase-order transactions.</p>
+          <div class="project-metrics">
+            <span>3-level hierarchy</span><span>2% supplier discount</span><span>3% / 4% / 5% tiers</span>
+            <span>USD 6,750 requisition</span><span>USD 15.00 → 14.70</span>
+          </div>
+          <a class="project-link hover-target" href="https://github.com/eshwarreddy24/SAP-Ariba-Contract-Compliance-Catalog-PO" target="_blank">View repository <b>↗</b></a>
+        </div>
+        <div class="shot">
+          <img src="https://raw.githubusercontent.com/eshwarreddy24/SAP-Ariba-Contract-Compliance-Catalog-PO/main/evidence/02_execution_and_validation_evidence.jpg" alt="SAP Ariba Contract Compliance buying and PO validation evidence">
+        </div>
+      </article>
+
+      <article class="project reveal hover-target">
+        <div>
+          <div class="project-no">PROJECT 02 / SAP ARIBA</div>
+          <h3>Service Contract, Receiving & Lifecycle Controls</h3>
+          <p>Built a standalone service contract with financial and quantity controls, processed service receiving, verified a milestone and completed lifecycle close-out and amendment steps.</p>
+          <div class="project-metrics">
+            <span>USD 500K ceiling</span><span>3% tolerance</span><span>USD 250/hour</span>
+            <span>60 hours = USD 15,000</span><span>USD 10K milestone</span>
+          </div>
+          <a class="project-link hover-target" href="https://github.com/eshwarreddy24/SAP-Ariba-Service-Contract-Receiving-Lifecycle" target="_blank">View repository <b>↗</b></a>
+        </div>
+        <div class="shot">
+          <img src="https://raw.githubusercontent.com/eshwarreddy24/SAP-Ariba-Service-Contract-Receiving-Lifecycle/main/evidence/07_receipt_60_hours.png" alt="SAP Ariba 60-hour service receipt evidence">
+        </div>
+      </article>
+    </section>
+
+    <section class="skills" id="skills">
+      <div class="section">
+        <h2 class="reveal">Tools & Software</h2>
+
+        <div class="marquee">
+          <div class="track">
+            <span class="pill">SAP Ariba</span><span class="pill">Contract Compliance</span><span class="pill">SAP MM/FI</span><span class="pill">P2P</span><span class="pill">Catalog Management</span><span class="pill">Requisitions</span><span class="pill">Purchase Orders</span><span class="pill">Receiving</span>
+            <span class="pill">SAP Ariba</span><span class="pill">Contract Compliance</span><span class="pill">SAP MM/FI</span><span class="pill">P2P</span><span class="pill">Catalog Management</span><span class="pill">Requisitions</span><span class="pill">Purchase Orders</span><span class="pill">Receiving</span>
+          </div>
+        </div>
+
+        <div class="marquee">
+          <div class="track reverse">
+            <span class="pill">SQL</span><span class="pill">Power BI</span><span class="pill">Tableau</span><span class="pill">Advanced Excel</span><span class="pill">Data Reconciliation</span><span class="pill">OpenAI API</span><span class="pill">LLMs</span><span class="pill">Prompt Engineering</span><span class="pill">RAG</span>
+            <span class="pill">SQL</span><span class="pill">Power BI</span><span class="pill">Tableau</span><span class="pill">Advanced Excel</span><span class="pill">Data Reconciliation</span><span class="pill">OpenAI API</span><span class="pill">LLMs</span><span class="pill">Prompt Engineering</span><span class="pill">RAG</span>
+          </div>
+        </div>
+
+        <div class="tool-grid reveal">
+          <div class="gem hover-target"><div class="gem-shape"><b>SAP<br>Ariba</b></div><small>Contract Compliance</small></div>
+          <div class="gem hover-target"><div class="gem-shape"><b>SAP<br>MM/FI</b></div><small>ERP</small></div>
+          <div class="gem hover-target"><div class="gem-shape"><b>SQL</b></div><small>Data</small></div>
+          <div class="gem hover-target"><div class="gem-shape"><b>Power<br>BI</b></div><small>Reporting</small></div>
+          <div class="gem hover-target"><div class="gem-shape"><b>Excel</b></div><small>Advanced</small></div>
+          <div class="gem hover-target"><div class="gem-shape"><b>OpenAI</b></div><small>API / LLM</small></div>
+          <div class="gem hover-target"><div class="gem-shape"><b>RAG</b></div><small>Retrieval</small></div>
+          <div class="gem hover-target"><div class="gem-shape"><b>GitHub</b></div><small>Projects</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section credentials" id="credentials">
+      <h2 class="section-title reveal">Credentials <span>& learning</span></h2>
+      <div class="cred-grid">
+        <article class="cred reveal hover-target">
+          <div class="label">SAP Certification</div>
+          <h3>SAP Certified — Implementation Consultant — SAP Service Cloud Version 2</h3>
+          <p>Certification verification is linked directly to the credential issuer.</p>
+          <a href="https://www.credly.com/badges/6f3d3882-6e12-41ef-8dbf-252c125f05c8" target="_blank">Verify credential <span>↗</span></a>
+        </article>
+        <article class="cred reveal hover-target">
+          <div class="label">SAP Ariba Learning</div>
+          <h3>17 course-completion badges across Contract Compliance and Procurement</h3>
+          <p>Includes Contract Compliance Release / No Release, receiving, invoice reconciliation, reports, approval rules and integration topics.</p>
+          <a href="https://github.com/eshwarreddy24/SAP-Ariba-Contract-Compliance-Catalog-PO/blob/main/SAP_LEARNING_CREDENTIALS.md" target="_blank">View learning credentials <span>↗</span></a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <h2 class="contact-name reveal">Gali Eshwar Reddy</h2>
+      <div class="contact-grid reveal">
+        <div>
+          <h4>Email</h4>
+          <p><a class="hover-target" href="mailto:eshwarreddy.gali@outlook.com">eshwarreddy.gali@outlook.com</a></p>
+          <h4 style="margin-top:22px">Location</h4>
+          <p>Bengaluru, India</p>
+        </div>
+        <div>
+          <h4>Social</h4>
+          <p><a class="hover-target" target="_blank" href="https://github.com/eshwarreddy24">GitHub ↗</a></p>
+          <p><a class="hover-target" target="_blank" href="https://www.linkedin.com/in/eshwar-reddy-gali-/">LinkedIn ↗</a></p>
+          <p><a class="hover-target" target="_blank" href="https://www.instagram.com/eshwarrxddy">Instagram ↗</a></p>
+        </div>
+        <div class="made">
+          Designed & developed as a portfolio for <span>Procurement · SAP · Data · AI</span>.
+        </div>
+      </div>
+      <div class="footer"><span>© 2026 Eshwar Reddy Gali</span><span>Build useful things · keep learning</span></div>
+    </section>
+  </main>
+
+  <script>
+    // Smooth delayed custom cursor
+    const cursor = document.getElementById('cursor');
+    let mx=innerWidth/2,my=innerHeight/2,cx=mx,cy=my;
+    addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+    function cursorLoop(){
+      cx += (mx-cx)*0.16; cy += (my-cy)*0.16;
+      cursor.style.transform=`translate3d(${cx}px,${cy}px,0) translate(-50%,-50%)`;
+      requestAnimationFrame(cursorLoop);
+    }
+    cursorLoop();
+    document.querySelectorAll('.hover-target,a,button').forEach(el=>{
+      el.addEventListener('mouseenter',()=>cursor.classList.add('active'));
+      el.addEventListener('mouseleave',()=>cursor.classList.remove('active'));
+    });
+
+    // Reveal sections on scroll
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+    },{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+
+    // project visual parallax + cube speed reaction
+    const shots=[...document.querySelectorAll('.shot')];
+    let scrollTicking=false;
+    function updateProjectParallax(){
+      if(innerWidth < 950 || matchMedia('(prefers-reduced-motion: reduce)').matches){
+        shots.forEach(el=>el.style.transform='none');
+        scrollTicking=false;
+        return;
+      }
+      shots.forEach(el=>{
+        const r=el.getBoundingClientRect();
+        const p=(r.top-innerHeight/2)/innerHeight;
+        el.style.transform=`rotateY(${Math.max(-5,Math.min(5,-p*6))}deg) rotateX(${Math.max(-2,Math.min(2,p*3))}deg) translateY(${p*6}px)`;
+      });
+      scrollTicking=false;
+    }
+    addEventListener('scroll',()=>{
+      if(!scrollTicking){
+        scrollTicking=true;
+        requestAnimationFrame(updateProjectParallax);
+      }
+    },{passive:true});
+    addEventListener('resize', updateProjectParallax, {passive:true});
+    updateProjectParallax();
+
+
+    // Pause decorative animations when the tab is hidden to avoid unnecessary CPU/GPU usage.
+    document.addEventListener('visibilitychange',()=>{
+      document.documentElement.style.setProperty(
+        '--motion-state',
+        document.hidden ? 'paused' : 'running'
+      );
+    });
+
+    // magnetic links / cards
+    document.querySelectorAll('.project-link,.social-rail a').forEach(el=>{
+      el.addEventListener('mousemove',e=>{
+        const r=el.getBoundingClientRect();
+        const dx=(e.clientX-r.left-r.width/2)*.12, dy=(e.clientY-r.top-r.height/2)*.12;
+        el.style.transform=`translate(${dx}px,${dy}px)`;
+      });
+      el.addEventListener('mouseleave',()=>el.style.transform='translate(0,0)');
+    });
+  </script>
+</body>
+</html>
